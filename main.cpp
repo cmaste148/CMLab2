@@ -1,49 +1,43 @@
 /*
 Lab 2
 Name: Cody Masterson
-Date: 4/9/2024
+Date: 4/14/2024
 IDE: Clion
 Version: 1.0
-Description:
+Description: Working with files, arrays, and sorting algorithms
 */
 
 #include "CMLab2.hpp"
 #include <iostream>
 
-/*
-void insertSort(int array[], int count)
-{
 
-    // Code taken from lecture
-
-    // insert next value into sorted
-    // start of the array
-    for(int i = 1; i < count; i++)
-    {
-        int value = array[i];
-        int j = i - 1;
-        // now move items up to find the right place for value
-        while (j >= 0 and array[j] > value)
-        {
-            array[j+1] = array[j];
-            j -= 1;
-        }
-        // found the place!
-        // but decremented j once too many times ...
-        array[j+1] = value;
-    }
-
-}
-*/
 
 int main()
 {
+    std::string names[SIZE], lnums[SIZE];
+    std::string search;
 
     introMessage();
-    std::string names[SIZE], lnums[SIZE];
     int count = readFile(names, lnums, SIZE);
-    std::cout << count << std::endl;
-    //displayArrays(names, lnums, count);
+    displayArrays(names, lnums, count);
+    sortArrays(names, lnums, count);
+    std::cout << std::endl;
+    displayArrays(names, lnums, count);
+    for (int i = 0; i < 3; i++)
+    {
+        std::cout << "Enter a name to search for: " << std::endl;
+        std::cin >> search;
+
+        if (binSearch(names, count, search) == true)
+        {
+            std::cout << search  << " is in the list "<< std::endl;
+        }
+        else
+        {
+            std::cout << search << " is not in the list "<< std::endl;
+        }
+
+    }
 
     return 0;
 }
